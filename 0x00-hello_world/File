@@ -1,0 +1,4 @@
+ntel contains 10, it should be 2
+First line contains #!/bin/bash
+
+Correct output: export CFILE=0-main.c ; ./100-intel where main.c contains a main function printing a string on the standard outputear
