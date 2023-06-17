@@ -2,30 +2,28 @@
 
 /**
  * main - Entry point
- * Print all possible different combinations of three digits
+ * Description: Print all possible combinations of two two-digit numbers
  * Return: Always 0 (Success)
  */
 int main(void)
 {
-	int first_digit;
-	int second_digit;
-	int third_digit;
+	int num1;
+	int num2;
 
-	for (first_digit = 0; first_digit <= 7; first_digit++)
+	for (num1 = 0; num1 <= 98; num1++)
 	{
-		for (second_digit = first_digit + 1; second_digit <= 8; second_digit++)
+		for (num2 = num1 + 1; num2 <= 99; num2++)
 		{
-			for (third_digit = second_digit + 1; third_digit <= 9; third_digit++)
-			{
-				putchar(first_digit + '0');
-				putchar(second_digit + '0');
-				putchar(third_digit + '0');
+			putchar((num1 / 10) + '0');
+			putchar((num1 % 10) + '0');
+			putchar(' ');
+			putchar((num2 / 10) + '0');
+			putchar((num2 % 10) + '0');
 
-				if (first_digit != 7 || second_digit != 8 || third_digit != 9)
-				{
-					putchar(',');
-					putchar(' ');
-				}
+			if (!(num1 == 98 && num2 == 99))
+			{
+				putchar(',');
+				putchar(' ');
 			}
 		}
 	}
