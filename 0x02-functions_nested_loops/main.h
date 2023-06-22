@@ -23,3 +23,10 @@ int add(int, int);
 void print_to_98(int n);
 
 void print_times_table(int n);
+
+#ifndef MAIN_H
+#define MAIN_H
+
+int _abs(int n);
+
+#endif /* MAIN_H */
