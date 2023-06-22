@@ -1,5 +1,11 @@
 #include "_putchar.h"
 
+/**
+ *main - Entry point of the program
+ *This function prints the characters '_putchar' followed by a new line.
+ *Return: Always 0 (Success)
+ */
+
 int main(void)
 {
 _putchar('_');
