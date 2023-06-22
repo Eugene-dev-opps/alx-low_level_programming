@@ -1,8 +1,5 @@
-/**
- * main - Entry point of the program
- *
- * Return: Always 0 (Success)
- */
+#include "_putchar.h"
+
 int main(void)
 {
 _putchar('_');
