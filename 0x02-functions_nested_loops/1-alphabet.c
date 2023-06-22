@@ -10,9 +10,9 @@ int i;
 char letters[] = "abcdefghijklmnopqrstuvwxyz";
 
 for (i = 0; i < 26; i++)
-    {
-        _putchar(letters[i]);
-    }
+{
+_putchar(letters[i]);
+}
 
 _putchar('\n');
 }
