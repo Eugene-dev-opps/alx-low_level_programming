@@ -1,28 +1,41 @@
-#include "my_file_handler.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include "main.h"
 
-/**
- * custom_textfile_reader to Read contents of a text file and display them
- * @filename: Name of the file to be read
- * @max_chars: The maximum number of characters to read
- * Return: Total bytes read and displayed,0 if the function encounters an issue
- */
-ssize_t custom_textfile_reader(const char *filename, size_t max_chars)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
-char *buffer;
-ssize_t file_descriptor;
-ssize_t bytes_written;
-ssize_t total_bytes;
-
-file_descriptor = open(filename, O_RDONLY);
-if (file_descriptor == -1)
+if (filename == NULL)
 return (0);
 
-buffer = malloc(sizeof(char) * max_chars);
-total_bytes = read(file_descriptor, buffer, max_chars);
-bytes_written = write(STDOUT_FILENO, buffer, total_bytes);
+FILE *file = fopen(filename, "r");
+if (file == NULL)
+return (0);
 
-ree(buffer);
-close(file_descriptor);
-return (bytes_written);
+char *buffer = malloc(sizeof(char) * (letters + 1));
+if (buffer == NULL)
+{
+fclose(file);
+return (0);
+}
+
+ssize_t read_count = fread(buffer, sizeof(char), letters, file);
+if (read_count <= 0)
+{
+fclose(file);
+free(buffer);
+return (0);
+}
+
+ssize_t write_count = write(STDOUT_FILENO, buffer, read_count);
+if (write_count < read_count)
+{
+fclose(file);
+free(buffer);
+return (0);
+}
+
+fclose(file);
+free(buffer);
+return (read_count);
 }
