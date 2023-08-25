@@ -1,27 +1,28 @@
-#include "main.h"
+#include "my_file_handler.h"
 #include <stdlib.h>
 
 /**
- * @filename: text file being read
- * @letters: number of letters to be read
- * Return: w- actual number of bytes read and printed
- * 0 when function fails or filename is NULL.
+ * custom_textfile_reader to Read contents of a text file and display them
+ * @filename: Name of the file to be read
+ * @max_chars: The maximum number of characters to read
+ * Return: Total bytes read and displayed,0 if the function encounters an issue
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+ssize_t custom_textfile_reader(const char *filename, size_t max_chars)
 {
-	char *buf;
-	ssize_t fd;
-	ssize_t w;
-	ssize_t t;
+char *buffer;
+ssize_t file_descriptor;
+ssize_t bytes_written;
+ssize_t total_bytes;
 
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	buf = malloc(sizeof(char) * letters);
-	t = read(fd, buf, letters);
-	w = write(STDOUT_FILENO, buf, t);
+file_descriptor = open(filename, O_RDONLY);
+if (file_descriptor == -1)
+return (0);
 
-	free(buf);
-	close(fd);
-	return (w);
+buffer = malloc(sizeof(char) * max_chars);
+total_bytes = read(file_descriptor, buffer, max_chars);
+bytes_written = write(STDOUT_FILENO, buffer, total_bytes);
+
+ree(buffer);
+close(file_descriptor);
+return (bytes_written);
 }
